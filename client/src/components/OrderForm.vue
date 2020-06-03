@@ -19,6 +19,7 @@
           <PriceCalculcator></PriceCalculcator>
         </div>
         <OrderDetails></OrderDetails>
+        <div>{{order_details}}</div>
       </div>
     </form>
   </main>
@@ -46,6 +47,9 @@ export default {
     },
     phone(){
       return this.$store.state.phone;
+    },
+    order_details(){
+      return this.$store.state.orderDetails
     }
   }
 }

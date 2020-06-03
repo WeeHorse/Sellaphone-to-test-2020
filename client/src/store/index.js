@@ -17,6 +17,15 @@ export default new Vuex.Store({
       cloudyInsurance:{checked:false},
       recognizeFace:{checked:false},
     },
+    orderDetails: {
+      first_name: "",
+      last_name: "",
+      phone_number: "",
+      email: "",
+      street: "",
+      zip: "",
+      city: ""
+    },
     total: 0
   },
   mutations: {
@@ -45,6 +54,9 @@ export default new Vuex.Store({
     },
     toggleExtra(state, name){
       state.extras[name].checked = !state.extras[name].checked
+    },
+    setOrderDetail(state, prop, val){
+      state.orderDetails[prop] = val
     },
     updateTotal(state){
       console.log('state.contract', state.contract)

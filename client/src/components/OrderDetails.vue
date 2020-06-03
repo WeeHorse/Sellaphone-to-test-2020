@@ -25,6 +25,62 @@ export default {
   computed:{
     total(){
       return this.$store.state.total
+    },
+    firstName:{
+      get(){
+        return this.$store.state.first_name
+      },
+      set(val){
+        this.$store.commit('setOrderDetail', 'first_name', val)
+      }
+    },
+    lastName:{
+      get(){
+        return this.$store.state.last_name
+      },
+      set(val){
+        this.$store.commit('setOrderDetail', 'last_name', val)
+      }
+    },
+    phoneNumber:{
+      get(){
+        return this.$store.state.phone_number
+      },
+      set(val){
+        this.$store.commit('setOrderDetail', 'phone_number', val)
+      }
+    },
+    email:{
+      get(){
+        return this.$store.state.email
+      },
+      set(val){
+        this.$store.commit('setOrderDetail', 'email', val)
+      }
+    },
+    street:{
+      get(){
+        return this.$store.state.street
+      },
+      set(val){
+        this.$store.commit('setOrderDetail', 'street', val)
+      }
+    },
+    zip:{
+      get(){
+        return this.$store.state.zip
+      },
+      set(val){
+        this.$store.commit('setOrderDetail', 'zip', val)
+      }
+    },
+    city:{
+      get(){
+        return this.$store.state.city
+      },
+      set(val){
+        this.$store.commit('setOrderDetail', 'city', val)
+      }
     }
   },
   methods:{
