@@ -5,11 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    phone: {price:0, id:0, name:'', features:'', image:''},
+    phone: {price:0, id:0, name:'No phone', features:'', image:''},
     phones:[],
-    contract: {price:0, id:0, name:''},
+    contract: {price:0, id:0, name:'No contract'},
     contracts:[],
-    data: {price:0, id:0, name:''},
+    data: {price:0, id:0, name:'No data'},
     datas: [],
     extras: {
       airyFlayphones:{checked:false},
@@ -26,6 +26,21 @@ export default new Vuex.Store({
       zip: "",
       city: ""
     },
+    keysToNames:{
+      first_name: "First name",
+      last_name: "Last name",
+      phone_number: "Phone number",
+      email: "Email",
+      street: "Street adress",
+      zip: "Zip code",
+      city: "City",
+      airyFlayphones: "Airy Flayphones",
+      boomyBassBox: "Boomy Bass Box",
+      cloudyInsurance: "Cloudy Insurance",
+      recognizeFace: "Recognize Face"
+    },
+    showOrderDetails: false,
+    showOrderConfirmation: true,
     total: 0
   },
   mutations: {
@@ -55,9 +70,18 @@ export default new Vuex.Store({
     toggleExtra(state, name){
       state.extras[name].checked = !state.extras[name].checked
     },
-    setOrderDetail(state, prop, val){
-      state.orderDetails[prop] = val
+    setOrderDetail(state, obj){
+      let propName = Object.keys(obj)[0]
+      let propVal = obj[propName]
+      state.orderDetails[propName] = propVal
     },
+    showOrderDetails(state, bool){
+      state.showOrderDetails = bool
+    },
+    showOrderConfirmation(state, bool){
+      state.showOrderConfirmation = bool
+    },
+
     updateTotal(state){
       console.log('state.contract', state.contract)
       console.log('state.phone', state.phone)

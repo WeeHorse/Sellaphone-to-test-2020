@@ -1,6 +1,6 @@
 <template>
   <main>
-    <form id="order">
+    <form id="order" @submit="submit">
       <div class="column">
         <h2>Välj telefon</h2>
         <Phone></Phone>
@@ -19,7 +19,6 @@
           <PriceCalculcator></PriceCalculcator>
         </div>
         <OrderDetails></OrderDetails>
-        <div>{{order_details}}</div>
       </div>
     </form>
   </main>
@@ -41,15 +40,11 @@ export default {
     PriceCalculcator,
     OrderDetails
   },
-  computed:{
-    total(){
-      return this.$store.state.total;
-    },
-    phone(){
-      return this.$store.state.phone;
-    },
-    order_details(){
-      return this.$store.state.orderDetails
+  methods:{
+    submit(e){
+      e.preventDefault()
+      this.$store.commit('showOrderDetails', false)
+      this.$store.commit('showOrderConfirmation', true)
     }
   }
 }
