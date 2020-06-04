@@ -26,6 +26,7 @@ export default new Vuex.Store({
       zip: "",
       city: ""
     },
+    orderResult:{},
     keysToNames:{
       first_name: "First name",
       last_name: "Last name",
@@ -40,7 +41,7 @@ export default new Vuex.Store({
       recognizeFace: "Recognize Face"
     },
     showOrderDetails: false,
-    showOrderConfirmation: true,
+    showOrderConfirmation: false,
     total: 0
   },
   mutations: {
@@ -75,13 +76,15 @@ export default new Vuex.Store({
       let propVal = obj[propName]
       state.orderDetails[propName] = propVal
     },
+    setOrderResult(state, result){
+      state.orderResult = result
+    },
     showOrderDetails(state, bool){
       state.showOrderDetails = bool
     },
     showOrderConfirmation(state, bool){
       state.showOrderConfirmation = bool
     },
-
     updateTotal(state){
       console.log('state.contract', state.contract)
       console.log('state.phone', state.phone)
@@ -118,6 +121,30 @@ export default new Vuex.Store({
       let response = await fetch('api/datas')
       let datas = await response.json()
       commit('setDatas', datas)
+    },
+    async sendOrder({commit, state}){
+      let response = await fetch('api/orders',{
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "first_name": state.orderDetails.first_name,
+          "last_name": state.orderDetails.last_name,
+          "phone": state.phone.id,
+          "contract": state.contract.id,
+          "data": state.data.id,
+          "boomy_bass_box": state.extras.boomyBassBox.checked,
+          "cloudy_insurance": state.extras.cloudyInsurance.checked,
+          "recognize_face": state.extras.recognizeFace.checked,
+          "price": state.total,
+          "phone_number": state.orderDetails.phone_number,
+          "email": state.orderDetails.email,
+          "street": state.orderDetails.street,
+          "zip": state.orderDetails.zip,
+          "city": state.orderDetails.city
+        })
+      })
+      let result = await response.json()
+      commit('setOrderResult', result)
     }
   }
 })
