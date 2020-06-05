@@ -4,7 +4,5 @@ Feature: Make choices
     Given that I'm at the Sellaphone page
     When I choose 'iPhone Z'
     And I choose the 18 month contract
-    Then the total should be 200
-
-
+    Then the total should be 315
 
