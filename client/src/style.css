@@ -209,7 +209,6 @@ div#details>h2{
 
 #confirm{
   position:fixed;
-  display:none;
   top:-5vh;
   padding:10vh 10vw;
   left:0;

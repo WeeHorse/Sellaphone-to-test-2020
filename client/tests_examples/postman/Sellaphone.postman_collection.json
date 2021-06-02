@@ -1,21 +1,50 @@
 {
 	"info": {
-		"_postman_id": "4f16fdc7-2d9f-420e-b388-14c0a1e84abf",
-		"name": "Sellaphone",
+		"_postman_id": "6407e846-b370-4f91-84b6-e8da47476f6c",
+		"name": "sellaphone",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "localhost:3000/api/orders",
+			"name": "get orders",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "9883f764-50bb-4e25-a350-77ef5a0d9be0",
+						"id": "376e47fc-a336-4a62-8d68-483a016799d3",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response objects should contain 'id','first_name','last_name', 'phone', 'contract', 'data', 'boomy_bass_box', 'cloudy_insurance', 'recognize_face','price',  'phone_number', 'email', 'street', 'zip', 'city', 'order-placed'\", function () {\r",
+							"     let orders = pm.response.json();\r",
+							"    for (let order of orders) {\r",
+							"        pm.expect(order).to.have.all.keys('id','first_name','last_name', 'phone', 'contract', 'data', 'boomy_bass_box', 'cloudy_insurance', 'recognize_face','price',  'phone_number', 'email', 'street', 'zip', 'city', 'order-placed');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response shows that Every order must at least include 'id','first_name','last_name', 'phone', 'contract', 'data', 'boomy_bass_box', 'cloudy_insurance', 'recognize_face','price',  'phone_number', 'email', 'street', 'zip', 'city', 'order-placed'\", function () {\r",
+							"    let orders = pm.response.json();\r",
+							"    for (let order of orders) {\r",
+							"        pm.expect(order).to.have.any.key('id','first_name','last_name', 'phone', 'contract', 'data', 'boomy_bass_box', 'cloudy_insurance', 'recognize_face','price',  'phone_number', 'email', 'street', 'zip', 'city', 'order-placed');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Respose must be an array\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -25,7 +54,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/orders",
+					"raw": "http://localhost:3000/api/orders",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -39,16 +69,51 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3000/api/orders",
+			"name": "skapa order",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "75d5f411-d7a5-4e02-8b03-81c5bc20c16f",
+						"id": "48c6db23-a932-4fa4-ab58-49cbefd42eb7",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check server status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.serverStatus).to.be.above(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"AffectedRows\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.affectedRows).to.eql(1);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\" One row created/affected\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.any.key('affectedRows');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Orders have id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.insertId).to.be.above(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Respose is an object\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('object');\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -59,7 +124,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"first_name\": \"Zenjamin\",\n        \"last_name\": \"Zerglund\",\n        \"phone\": 100,\n        \"contract\": 150,\n        \"data\": 200,\n        \"boomy_bass_box\": 50,\n        \"cloudy_insurance\": 75,\n        \"recognize_face\": 20,\n        \"price\": 520,\n        \"phone_number\": 768540989,\n        \"email\": \"benjaminber\",\n        \"street\": \"2\",\n        \"zip\": 21125,\n        \"city\": \"Malmö\",\n        \"order-placed\": \"2019-5-17 9:13\"\n    }",
+					"raw": "{\r\n        \"first_name\": \"Klara\",\r\n        \"last_name\": \"Test\",\r\n        \"phone\": 100,\r\n        \"contract\": 150,\r\n        \"data\": 200,\r\n        \"boomy_bass_box\": 50,\r\n        \"cloudy_insurance\": 75,\r\n        \"recognize_face\": 20,\r\n        \"price\": 520,\r\n        \"phone_number\": \"0785641258\",\r\n        \"email\": \"klara@mail.com\",\r\n        \"street\": \"Björkavägen 2\",\r\n        \"zip\": 75962,\r\n        \"city\": \"Malmö\",\r\n        \"order-placed\": \"2019-6-17 9:13\"\r\n      }\r\n      ",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -67,7 +132,8 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/orders",
+					"raw": "http://localhost:3000/api/orders",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -81,54 +147,56 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3000/api/orders",
+			"name": "get all phones",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "1cf4a538-8453-4e1d-b5be-d2a1662cc935",
+						"id": "da52d0a8-da26-4452-b795-836a3f47e3e5",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response objects should contain 'id','name', 'features', 'price', 'image'\", function () {\r",
+							"    let phones = pm.response.json();\r",
+							"    for (let phone of phones) {\r",
+							"        pm.expect(phone).to.have.all.keys('id','name', 'features', 'price', 'image');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response shows that Every order must at least include 'id','name', 'features', 'price', 'image'\", function () {\r",
+							"    let phones = pm.response.json();\r",
+							"    for (let phone of phones) {\r",
+							"        pm.expect(phone).to.have.any.key('id','name', 'features', 'price', 'image');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Respose must be an array\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\t\"id\": 5,\n        \"first_name\": \"Xenjamin\",\n        \"last_name\": \"Xerglund\",\n        \"phone\": 100,\n        \"contract\": 150,\n        \"data\": 200,\n        \"boomy_bass_box\": 50,\n        \"cloudy_insurance\": 75,\n        \"recognize_face\": 20,\n        \"price\": 520,\n        \"phone_number\": 768540989,\n        \"email\": \"benjaminber\",\n        \"street\": \"2\",\n        \"zip\": 21125,\n        \"city\": \"Malmö\",\n        \"order-placed\": \"2019-5-17 9:13\"\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/api/orders",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"orders"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:3000/api/phones",
-			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/phones",
+					"raw": "http://localhost:3000/api/phones",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -136,6 +204,132 @@
 					"path": [
 						"api",
 						"phones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all contracts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "afb7f627-b771-4774-bb9e-693dbde0e813",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response objects should contain 'id', 'name','price'\", function () {\r",
+							"    let contracts = pm.response.json();\r",
+							"    for (let contract of contracts) {\r",
+							"        pm.expect(contract).to.have.all.keys('id','name','price');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response shows that Every order must at least include 'id','name','price'\", function () {\r",
+							"    let contracts = pm.response.json();\r",
+							"    for (let contract of contracts) {\r",
+							"        pm.expect(contract).to.have.any.key('id','name','price');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Respose must be an array\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/contracts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all datas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d050d015-9aa5-48a1-ace1-c4e82071d5e4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response objects should contain 'id', 'name','price'\", function () {\r",
+							"    let datas = pm.response.json();\r",
+							"    for (let data of datas) {\r",
+							"        pm.expect(data).to.have.all.keys('id','name','price');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response shows that Every order must at least include 'id','name','price'\", function () {\r",
+							"    let datas = pm.response.json();\r",
+							"    for (let data of datas) {\r",
+							"        pm.expect(data).to.have.any.key('id','name','price');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Respose must be an array\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/datas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"datas"
 					]
 				}
 			},

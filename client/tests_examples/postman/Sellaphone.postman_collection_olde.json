@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "4f16fdc7-2d9f-420e-b388-14c0a1e84abf",
+		"name": "Sellaphone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/api/orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9883f764-50bb-4e25-a350-77ef5a0d9be0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75d5f411-d7a5-4e02-8b03-81c5bc20c16f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"first_name\": \"Zenjamin\",\n        \"last_name\": \"Zerglund\",\n        \"phone\": 100,\n        \"contract\": 150,\n        \"data\": 200,\n        \"boomy_bass_box\": 50,\n        \"cloudy_insurance\": 75,\n        \"recognize_face\": 20,\n        \"price\": 520,\n        \"phone_number\": 768540989,\n        \"email\": \"benjaminber\",\n        \"street\": \"2\",\n        \"zip\": 21125,\n        \"city\": \"Malmö\",\n        \"order-placed\": \"2019-5-17 9:13\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1cf4a538-8453-4e1d-b5be-d2a1662cc935",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"id\": 5,\n        \"first_name\": \"Xenjamin\",\n        \"last_name\": \"Xerglund\",\n        \"phone\": 100,\n        \"contract\": 150,\n        \"data\": 200,\n        \"boomy_bass_box\": 50,\n        \"cloudy_insurance\": 75,\n        \"recognize_face\": 20,\n        \"price\": 520,\n        \"phone_number\": 768540989,\n        \"email\": \"benjaminber\",\n        \"street\": \"2\",\n        \"zip\": 21125,\n        \"city\": \"Malmö\",\n        \"order-placed\": \"2019-5-17 9:13\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/phones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/phones",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"phones"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

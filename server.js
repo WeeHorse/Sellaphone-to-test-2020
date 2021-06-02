@@ -2,6 +2,10 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 
+// import stripe payment gateway
+let Stripe = require('stripe');
+const stripe = new Stripe('sk_test_NzHkwYglPCxxPr9NXGgBrhTy');
+
 // Require the mysql module that let's us
 // speak with a mysql server
 let mysql = require('mysql');
@@ -75,11 +79,29 @@ app.post('/api/orders', function (req, res) {
       delete(req.body[field]);
     }
   }
-  // make the query to the database
-  db.query('INSERT INTO orders SET ?', req.body, function (error, results) {
-    res.json(error || results);
-  });
+  payWithStripe(req, res, (req, res, charge)=>{
+    // make the query to the database (saving status to the db would be helpful..)
+    db.query('INSERT INTO orders SET ?', req.body, function (error, results) {
+      res.json(error || {results:results, charge: charge});
+    });
+  })
 });
+
+async function payWithStripe(req, res, next){
+  const customer = await stripe.customers.create({
+    email: req.body.email,
+  });
+  console.log(customer.id);
+  let source = await stripe.customers.createSource(customer.id, {
+    source: 'tok_visa'
+  });
+  let charge = await stripe.charges.create({
+    amount: req.body.price * 100, // SEK ören
+    currency: 'SEK',
+    customer: source.customer
+  });
+  next(req, res, charge)
+}
 
 
 // Start the web server at a port

@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-    <testsuite name="make-choices;when-i-choose-iphone-z-and-18-month-contract" tests="4" failures="0" skipped="3">
+    <testsuite name="subscription-model;product-combinations" tests="6" failures="1" skipped="4">
         <properties>
-            <property name="URI" value="/Applications/AMPPS/www/MVT19/Sellaphone-to-test-2020/client/tests/selenium/features/choose.feature">
+            <property name="URI" value="/Applications/AMPPS/www/MVT19/Sellaphone-to-test-2020/client/tests/selenium/features/subscription-model.feature">
             </property>
         </properties>
-        <testcase name="Given that I&apos;m at the Sellaphone page" classname="make-choices;when-i-choose-iphone-z-and-18-month-contract" time="10.498731459">
+        <testcase name="Given that I am on the Sellaphone campaign website" classname="subscription-model;product-combinations" time="5.053249509">
         </testcase>
-        <testcase name="When I choose &apos;iPhone Z&apos;" classname="make-choices;when-i-choose-iphone-z-and-18-month-contract">
+        <testcase name="When I pick the phone: &quot;iPhone G&quot;" classname="subscription-model;product-combinations" time="0.511808228">
+            <failure message="TypeError: Cannot read property &apos;includes&apos; of undefined">TypeError: Cannot read property &apos;includes&apos; of undefined
+    at createWorld.&lt;anonymous&gt; (/Applications/AMPPS/www/MVT19/Sellaphone-to-test-2020/client/tests/selenium/step-definitions/subscription-model.js:19:26)
+    at process._tickCallback (internal/process/next_tick.js:68:7)</failure>
+        </testcase>
+        <testcase name="And the contract: &quot;24 mån Guld&quot;" classname="subscription-model;product-combinations">
             <skipped message="">
             </skipped>
         </testcase>
-        <testcase name="And I choose the 18 month contract" classname="make-choices;when-i-choose-iphone-z-and-18-month-contract">
+        <testcase name="And the data amount: &quot;100 GB&quot;" classname="subscription-model;product-combinations">
             <skipped message="">
             </skipped>
         </testcase>
-        <testcase name="Then the total should be 200" classname="make-choices;when-i-choose-iphone-z-and-18-month-contract">
+        <testcase name="Then the discount will be 0.25" classname="subscription-model;product-combinations">
+            <skipped message="">
+            </skipped>
+        </testcase>
+        <testcase name="And I the total price per month, after discounts, will be 412.5" classname="subscription-model;product-combinations">
             <skipped message="">
             </skipped>
         </testcase>

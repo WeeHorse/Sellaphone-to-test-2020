@@ -1,6 +1,6 @@
 <template>
   <main>
-    <form id="order">
+    <form id="order" @submit="submit">
       <div class="column">
         <h2>Välj telefon</h2>
         <Phone></Phone>
@@ -40,12 +40,13 @@ export default {
     PriceCalculcator,
     OrderDetails
   },
-  computed:{
-    total(){
-      return this.$store.state.total;
-    },
-    phone(){
-      return this.$store.state.phone;
+  methods:{
+    async submit(e){
+      e.preventDefault()
+      this.$store.commit('showOrderDetails', false)
+      await this.$store.dispatch('sendOrder')
+      this.$store.commit('showOrderConfirmation', true)
+      console.log(this.$store.orderResult)
     }
   }
 }
