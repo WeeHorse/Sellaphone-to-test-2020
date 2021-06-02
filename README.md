@@ -1,6 +1,24 @@
-# client
+# Server operations
 
-## Project setup
+## Server setup
+```
+npm install
+```
+
+## Start server
+```
+npm start
+```
+
+_All other operations are run from the client directory_
+
+# Client operations
+Go to the client dir..
+```
+cd client
+```
+
+## Client project setup
 ```
 npm install
 ```
