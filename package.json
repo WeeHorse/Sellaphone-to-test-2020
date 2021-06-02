@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node server",
     "test": "echo \"Both server and client tests are run from client dir \" && exit 1"
   },
   "author": "",

@@ -13,12 +13,18 @@ npm start
 _All other operations are run from the client directory_
 
 # Client operations
-Go to the client dir..
+_Go to the client dir.._
 ```
 cd client
 ```
+## Install Vue CLI for the client
+Read about changes to Vue CLI: https://cli.vuejs.org/guide/installation.html
+_Unfortunately vue cli likes to be installed globally.._
+```
+npm install -g @vue/cli
+```
 
-## Client project setup
+##  Client project setup
 ```
 npm install
 ```
